@@ -50,8 +50,8 @@ function getCountries(data) {
     countriesListEl.innerHTML += countryInfo;
   });
 
-  nextBtn.disabled = currentPage === 1;
-  prevBtn.disabled = endIndex >= data.length;
+  prevBtn.disabled = currentPage === 1;
+  nextBtn.disabled = endIndex >= data.length;
 }
 
 function getAllCountries(allCountries) {
