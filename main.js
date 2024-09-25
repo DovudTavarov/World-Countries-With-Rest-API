@@ -24,8 +24,6 @@ function getFetch() {
     .catch((error) => console.log(error));
 }
 
-let counter = 1;
-
 let allCountries = [];
 
 getFetch();
@@ -49,7 +47,8 @@ function getCountries(data) {
                     </div>`;
     countriesListEl.innerHTML += countryInfo;
   });
-
+  let totalPage = Math.ceil(data.length / countriesPerPage);
+  pageCountEl.innerHTML = `Page: ${currentPage} / ${totalPage}`;
   prevBtn.disabled = currentPage === 1;
   nextBtn.disabled = endIndex >= data.length;
 }
@@ -89,8 +88,6 @@ nextBtn.addEventListener("click", () => {
   searchEl.value = "";
   if (currentPage * countriesPerPage < allCountries.length) {
     currentPage++;
-    counter++;
-    countPage.innerHTML = counter;
     getCountries(allCountries);
   }
 });
@@ -99,8 +96,6 @@ prevBtn.addEventListener("click", () => {
   searchEl.value = "";
   if (currentPage > 1) {
     currentPage--;
-    counter--;
-    countPage.innerHTML = counter;
     getCountries(allCountries);
   }
 });
